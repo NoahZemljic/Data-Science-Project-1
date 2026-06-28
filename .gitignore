@@ -1,0 +1,33 @@
+.DS_Store
+
+# Python version
+.python-version
+
+# venv
+dspro1_env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# SQLite
+*.sqlite3
+
+# Env/Secrets
+.env
+
+# Dataset
+images
+Dataset/
+dataset/
+
+# Outputs
+runs/
+
+# Models
+#*.pt
+
+# Custom models
+checkpoints_custom_model/*

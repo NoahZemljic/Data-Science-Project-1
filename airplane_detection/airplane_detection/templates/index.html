@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'favicon/airplane-favicon.png' %}"
+    />
+    <title>Landing Page - Airplane Detection</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+
+  <body>
+    <header>
+      <svg
+        id="ap-header-logo"
+        version="1.0"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1280.000000 1280.000000"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <g
+          transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
+          fill="#E60005"
+          stroke="none"
+        >
+          <path
+            d="M1564 8889 c-62 -14 -144 -69 -185 -123 -46 -60 -69 -131 -69 -208 0
+    -45 182 -1123 226 -1340 l6 -28 -636 0 c-625 0 -636 0 -693 -21 -69 -27 -145
+    -94 -181 -164 -24 -45 -27 -60 -26 -155 l0 -105 138 -440 c162 -520 170 -536
+    301 -602 49 -25 1530 -651 1740 -735 843 -340 1728 -533 2650 -578 115 -5 685
+    -10 1266 -10 l1057 0 4 -112 c3 -97 7 -121 30 -170 32 -69 92 -129 166 -165
+    l57 -28 665 -3 c581 -3 678 -1 765 14 265 43 502 198 640 417 l30 47 1241 0
+    c1364 0 1334 -1 1494 61 267 103 474 350 535 640 29 138 17 344 -30 484 -28
+    87 -171 366 -243 475 -365 559 -958 967 -1592 1095 -256 52 7 48 -3615 52
+    l-3360 4 -500 777 c-275 427 -517 796 -539 819 -21 24 -54 52 -72 64 -76 47
+    -104 49 -684 48 -300 -1 -563 -5 -586 -10z m1402 -1456 c325 -507 517 -795
+    549 -829 35 -35 69 -58 110 -73 l60 -23 3420 -5 c2969 -4 3435 -6 3530 -19
+    195 -27 354 -75 539 -162 l120 -57 -355 -5 -354 -5 -53 -30 c-71 -38 -136
+    -112 -162 -183 -31 -81 -25 -196 14 -275 34 -70 110 -139 182 -166 53 -20 73
+    -21 739 -21 l684 0 54 -112 c31 -62 60 -132 66 -155 22 -83 -26 -189 -102
+    -224 -40 -18 -84 -19 -1214 -19 l-1173 0 -6 28 c-74 344 -245 614 -520 820
+    -147 110 -370 204 -563 236 -137 23 -1887 24 -2028 1 -247 -40 -499 -165 -671
+    -333 -77 -75 -110 -135 -121 -217 -21 -153 53 -296 188 -362 49 -25 67 -28
+    151 -28 115 0 154 16 256 106 77 67 199 131 284 149 40 8 306 10 955 8 l900
+    -3 73 -27 c212 -77 372 -263 416 -480 20 -96 20 -131 1 -194 -18 -61 -62 -116
+    -123 -152 l-47 -27 -456 -3 -456 -3 -5 111 c-5 98 -9 118 -37 174 -37 75 -92
+    128 -170 165 l-56 26 -1405 6 c-1221 5 -1429 8 -1585 23 -647 61 -1209 181
+    -1790 380 -239 82 -280 98 -1182 478 l-743 313 -29 95 c-16 52 -33 107 -36
+    123 l-7 27 613 0 614 0 61 29 c121 57 196 172 195 300 0 54 -195 1214 -226
+    1349 l-5 22 203 0 203 0 500 -777z"
+          />
+        </g>
+      </svg>
+    </header>
+
+    <main class="container">
+      <div class="ap-instruction-box">
+        <div class="row">
+          <div class="col-12 col-xl-6 mt-xl-0 mt-4">
+            <h1>Airplane Detection</h1>
+            <h2>Upload your own Airplane image</h2>
+            <p>
+              Upload your own aerial image to find all the airplanes, then use
+              the slider to compare your original photo with the processed
+              results.
+            </p>
+
+            <form
+              id="ap-image-form"
+              method="post"
+              enctype="multipart/form-data"
+              class="row mt-4"
+            >
+              {% csrf_token %}
+              <div class="col-12 col-xl-6 text-xl-start text-center mb-2">
+                <label
+                  id="ap-image-upload-label"
+                  for="ap-image-upload"
+                  class="ap-upload-file-label ap-active"
+                  >Upload Image</label
+                >
+                <input
+                  id="ap-image-upload"
+                  type="file"
+                  name="ap-image-upload"
+                  accept="image/*"
+                  class="ap-upload-file-input form-control"
+                  required
+                />
+              </div>
+
+              <div class="col-12 col-xl-6 text-xl-start text-center">
+                <button
+                  id="ap-process-btn"
+                  class="ap-start-process-btn"
+                  type="submit"
+                  name="process-image"
+                  value="1"
+                  formaction="#ap-processed-result"
+                  disabled
+                  aria-disabled="true"
+                >
+                  Start Process
+                </button>
+              </div>
+            </form>
+
+            {% if error %}
+            <div class="alert alert-warning mt-3">{{ error }}</div>
+            {% endif %}
+          </div>
+
+          <div class="col-12 col-xl-6 mt-xl-0 mt-4 align-self-center">
+            <video title="Preview of what to expect when uploading your own image" autoplay loop muted>
+              <source
+                src="{% static 'video/illustration.mp4' %}"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      {% if back_image_url and front_image_url %}
+      <div class="ap-output-box" id="ap-processed-result">
+        <div class="ap-output-image-comparison">
+          <div class="ap-compare-image" id="ap-compare-image">
+            <!-- BACK image = bearbeitet -->
+            <img src="{{ back_image_url }}" alt="Processed Image" title="Processed Image" />
+            <!-- FRONT image = original -->
+            <img src="{{ front_image_url }}" alt="Original Image" title="Original Image" />
+            <div class="ap-compare-image-slider"></div>
+          </div>
+        </div>
+
+        <div class="container-fluid ap-output-image-information">
+          <div class="row">
+            <div class="col-12 col-xl-11">
+              <p>
+                This image contains <strong>{{ plane_count }}</strong> detected
+                airplane{{ plane_count|pluralize }}.
+              </p>
+            </div>
+            <div class="col-12 col-xl-1 text-center text-xl-end">
+              <svg
+                id="ap-scroll-up"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 256 256"
+                enable-background="new 0 0 256 256"
+                xml:space="preserve"
+              >
+                <path
+                  fill="#E60005"
+                  d="M40.3,189.5c-6.9,6.9-18.2,6.9-25.1,0c-6.9-6.9-6.9-18,0-24.8l100.2-98.2c6.9-6.9,18.2-6.9,25.1,0l100.2,98.2
+                       c6.9,6.9,6.9,18,0,24.8c-6.9,6.9-18.2,6.9-25.1,0L128,109L40.3,189.5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="container-fluid mt-5">
+          <div class="row">
+            <div class="col-12 text-center">
+              <a
+                href="{{ back_image_url }}"
+                download="{{ download_filename|default:'processed_image.png' }}"
+                class="ap-download-btn"
+                >Download image</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center ap-footer-icon">
+            <a href="https://github.com/domi-zc/DSPRO1" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98 98">
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <div id="ap-loading-screen">
+      <svg class="ap-loading-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <circle class="ap-dot" cx="0" cy="0" r="5" fill="#fff" />
+        </defs>
+        <circle class="ap-main-circle" fill="none" stroke="none" stroke-width="2" stroke-miterlimit="10" cx="400" cy="300" r="70" />
+        <g class="ap-plane-group">
+          <path class="ap-plane" fill="#FFF" d="M38.1,19.6c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.6-0.3-0.7c-1.2-1-2.8-1.6-4.4-1.6l-8.7,0L12.2,0L8.2,0l6.3,16.5	l-5.9,0c-0.5,0-1.1,0.1-1.6,0.4L3.1,11L0,11l3.1,7.9L0,26.7l3.1,0l3.9-5.9c0.5,0.3,1,0.4,1.6,0.4l5.9,0L8.2,37.7h3.9l13-16.5l8.7,0	C35.4,21.2,36.9,20.6,38.1,19.6" />
+        </g>
+        <g class="ap-loading-container"></g>
+      </svg>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="{% static 'js/loading-screen.js' %}"></script>
+  </body>
+  <!--
+               \ /                                          \   /
+              --o--           `\\             //'      .____-/.\-____.
+                                \\           //             ~`-'~
+                                 \\. __-__ .//
+                       ___/-_.-.__`/~     ~\'__.-._-\___                    
+.|.       ___________.'__/__ ~-[ \.\'-----'/./ ]-~ __\__`.___________       .|.
+~o~~~~~~~--------______-~~~~~-_/_/ |   .   | \_\_-~~~~~-______--------~~~~~~~o~
+' `               + + +  (X)(X)  ~--\__ __/--~  (X)(X)  + + +               ' `
+                             (X) `/.\' ~ `/.\' (X)  
+                                 "\_/"   "\_/"
+--></html>
