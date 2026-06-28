@@ -1,6 +1,4 @@
-# DSPRO1
-Data Science Project I
-
+# Data Science Project 1 - Airplane Detection with Computer Vision
 ## Frontend
 
 A lightweight Django project without a database.
