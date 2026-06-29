@@ -23,7 +23,7 @@ The project also benchmarks two models against each other: a **fine-tuned YOLOv1
 
 <!-- Once you have one, drop it into results/ and uncomment: -->
 
-![Demo](images/dashboard.gif)
+![Demo](results/dashboard.gif)
 
 <!-- Verify this EC2 instance is still running before publishing; remove this line if it has been torn down. -->
 
